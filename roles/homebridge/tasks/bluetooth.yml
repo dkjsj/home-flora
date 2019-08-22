@@ -1,0 +1,11 @@
+---
+- name: install Bluetooth dependencies
+  apt:
+    name:
+      - python
+      - python-pip
+      - bluez
+      - bluez-hcidump
+      - libbluetooth-dev
+      - libudev-dev
+    state: present

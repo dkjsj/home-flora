@@ -1,0 +1,4 @@
+[flora]
+flora.local.lan ansible_user=jsj  
+
+[homebridge]

@@ -1,0 +1,25 @@
+- hosts: all
+  become: yes
+  #become_method: sudo
+  #become_user: root
+  #user: jsj
+
+  vars_files:
+    - ~/my_vault.yml 
+
+  vars:
+    ansible_become_pass: "{{ su_password }}"
+    homebridge_name: Flora
+    homebridge_pin: 123-45-678
+    homebridge_port: 51826
+    homebridge_plugins:
+      - name: homebridge-mi-flower-care
+    homebridge_accessories:
+      - accessory: "mi-flower-care"
+        name: "Hjerte"
+        deviceId: "C4:7C:8D:6B:21:52"
+        interval": "300"
+  
+  roles:
+    - { role: "homebridge", when: "'flora' in group_names" }
+  

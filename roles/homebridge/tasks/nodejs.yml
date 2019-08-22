@@ -1,0 +1,22 @@
+---
+- name: install dependencies
+  apt:
+    name:
+      - gnupg2
+      - apt-transport-https
+      - libcap2-bin
+    state: present
+
+- name: install node and npm
+  apt:
+    name:
+      - nodejs
+      - npm
+    state: present
+
+- name: grant node binary cap_net_raw privileges
+  capabilities:
+    path: "{{ homebridge_nodejs_binary }}"
+    capability: cap_net_raw+eip
+    state: present
+  when: homebridge_enable_cap_net_raw|bool
